@@ -1,4 +1,4 @@
-FROM node:17 as development
+FROM node:16 as development
 
 # Create app directory, this is in our container/in our image
 WORKDIR /thomas/src/app
@@ -16,5 +16,4 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
 CMD [ "node", "dist/main" ]
