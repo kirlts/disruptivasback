@@ -4,12 +4,16 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonasModule } from './personas/personas.module';
 
+function env_host() {
+  if (process.env.ENV) return process.env.DB_HOST;
+  return `/cloudsql/${process.env.DB_HOST}`;
+}
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'db',
+      host: env_host(),
       port: Number.parseInt(process.env.DB_PORT),
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
