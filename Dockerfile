@@ -14,6 +14,9 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+# Expose the port that your application listens on
+EXPOSE 3000
+
 RUN npm run build
 
 CMD [ "node", "dist/main" ]
